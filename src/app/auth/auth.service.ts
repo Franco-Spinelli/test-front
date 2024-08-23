@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
 import { LoginRequest } from './loginRequest';
 import { environment } from '../../environments/environment';
 import { RegisterRequest } from './registerRequest';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class AuthService {
   authStatus = this.loggedIn.asObservable();
   private currentLoginOn = new BehaviorSubject<boolean>(false);
   private currentUserData = new BehaviorSubject<string>('');
-  constructor(private http: HttpClient, private cookies:CookieService) {
+  constructor(private http: HttpClient) {
     this.currentLoginOn.next(sessionStorage.getItem('token') !== null);
     this.currentUserData.next(sessionStorage.getItem('token') || '');
     this.loggedIn.next(this.currentLoginOn.value);
@@ -25,8 +25,6 @@ export class AuthService {
       tap((userData) => {
         sessionStorage.setItem('token', userData.token);
         this.currentUserData.next(userData.token);
-        this.cookies.set("name",userData.name)
-        this.cookies.set("lastname",userData.lastname)
         this.currentLoginOn.next(true);
         this.loggedIn.next(true);
       }),
@@ -40,8 +38,6 @@ export class AuthService {
       tap((userData) => {
         sessionStorage.setItem('token', userData.token);
         this.currentUserData.next(userData.token);
-        this.cookies.set("name",userData.name)
-        this.cookies.set("lastname",userData.lastname)
         this.currentLoginOn.next(true);
         this.loggedIn.next(true);
       }),
@@ -52,8 +48,6 @@ export class AuthService {
 
   logOut(): void {
     sessionStorage.removeItem('token');
-    this.cookies.set("name","")
-    this.cookies.set("lastname","")
     this.currentUserData.next('');
     this.currentLoginOn.next(false);
     this.loggedIn.next(false);
@@ -70,12 +64,6 @@ export class AuthService {
 
   get userData(): Observable<string> {
     return this.currentUserData.asObservable();
-  }
-  getName(){
-    return this.cookies.get("name")
-  }
-  getLastname(){
-    return this.cookies.get("lastname");
   }
   get userLoginOn(): Observable<boolean> {
     return this.currentLoginOn.asObservable();

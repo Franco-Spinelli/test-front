@@ -1,0 +1,40 @@
+<div class="login-container">
+    <div class="image-section">
+        <img src="/assets/img/fondo.png" alt="Imagen de fondo">
+        <div class="img-text">
+            <h1 class="h1-img">Iniciar sesión</h1>
+            <p class="p-img">Nos alegra tenerte de vuelta y estamos listos para atender tus necesidades. Inicia sesión y continúa
+                aprovechando al máximo nuestra plataforma.
+            </p>
+            <div class="monitoring">
+                <p class="title-monitoring"><i class="material-icons" >stars</i> Monitoreo integral</p>
+                <p class="p-monitoring">Administra, monitorea mutiples plantas de forma centralizada</p>
+            </div>
+            <div class="notifications">
+                <p class="title-notifications"><i class="material-icons" >space_dashboard</i> Notificaciones en tiempo real</p>
+                <p class="p-notifications">Recibi notificaciones en tiempo real sobre las mediciones</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-section">
+        <div class="information">
+            <h1 class="h1-information">Portal de monitoreo</h1>
+            <h3 class="h3-information">Iniciar sesión</h3>
+            <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="email-section">
+                    <p class="text-email">Email</p>
+                    <input class="input-information" formControlName="username" name="username" required placeholder="Usuario">
+                </div>
+                <input class="input-information" formControlName="password" name="password" type="password" required placeholder="Contraseña">
+                <div class="form-actions">
+                    <a href="" class="a-information">¿Olvidaste tu Contraseña?</a>
+                    <button class="button-information" type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+            <p class="p-information">Protegido por reCAPTCHA y sujeto a la <a href=""
+                    style="text-decoration: none; color: rgba(51, 163, 170, 1);">Política de Privacidad</a> y <a href=""
+                    style="text-decoration: none; color: rgba(51, 163, 170, 1);">Condiciones</a></p>
+        </div>
+    </div>
+
+</div>
