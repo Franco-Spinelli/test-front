@@ -262,7 +262,15 @@ td {
 .example-spacer {
     flex: 1 1 auto;
 }
-
+.action-button{
+    background-color:rgba(255, 255, 255, 1);
+    border: none;
+    cursor: pointer;
+}
+.action-button:hover{
+    background-color:rgb(243, 243, 243);
+    border-radius: 50%;
+}
 @media (max-width: 1100px) {
     .alerts {
         flex-direction: column;

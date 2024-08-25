@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlantDTO } from '../../models';
+import { PlantDTO, SensorType } from '../../models';
 import { PlantService } from '../../services/plant.service';
 import { SensorService } from '../../services/sensor.service';
 
@@ -14,6 +14,15 @@ export class UserDashboardComponent implements OnInit{
   totalMediumAlerts: number = 0;
   totalRedAlerts: number = 0;
   totalDisabled: number = 0;
+
+  totalTemperatureValues: any;
+  totalPressureValues: any;
+  totalWindValues: any;
+  totalLevelsValues: any;
+  totalEnergyValues: any;
+  totalTensioneValues: any;
+  totalCarbonMonoxideValues: any;
+  totalGasesValues: any;
   constructor(private plantService:PlantService, private sensorService:SensorService){
     this.plants = []
   }
@@ -38,7 +47,18 @@ export class UserDashboardComponent implements OnInit{
   loadPlants(){
     this.plantService.getPlants().subscribe((data)=>{
       this.plants = data;
+      this.loadNumbersBytype();
     })
+  }
+  loadNumbersBytype(){
+    this.totalTemperatureValues = this.calculateTotalByType(SensorType.TEMPERATURE);
+    this.totalPressureValues= this.calculateTotalByType(SensorType.PRESSURE);
+    this.totalWindValues= this.calculateTotalByType(SensorType.WIND);
+    this.totalLevelsValues= this.calculateTotalByType(SensorType.LEVELS);
+    this.totalEnergyValues= this.calculateTotalByType(SensorType.ENERGY);
+    this.totalTensioneValues= this.calculateTotalByType(SensorType.TENSION);
+    this.totalCarbonMonoxideValues= this.calculateTotalByType(SensorType.CARBON_MONOXIDE);
+    this.totalGasesValues= this.calculateTotalByType(SensorType.OTHER_GASES);
   }
   calculateOkReadingsByPlant(plant:PlantDTO): number{
     let count = 0;
@@ -61,5 +81,22 @@ export class UserDashboardComponent implements OnInit{
     })
     return count;
   }
-  
+  calculateTotalByType(type:SensorType): any{
+    const totalAlerts: any = {
+      okReadings: 0,
+      mediumAlerts: 0,
+      redAlerts: 0,
+    };
+    this.plants.forEach(plant => {
+      plant.sensorSummaryDTOList.forEach(sensorSummary => {
+        if (sensorSummary.type === type) {
+          totalAlerts.okReadings += sensorSummary.okReadings;
+          totalAlerts.mediumAlerts += sensorSummary.mediumAlerts;
+          totalAlerts.redAlerts += sensorSummary.redAlerts;
+        }
+      });
+    });
+
+    return totalAlerts;
+  }
 }

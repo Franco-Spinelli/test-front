@@ -79,8 +79,19 @@
                         <td>{{ calculateMediumAlertsByPlant(plant) }}</td>
                         <td>{{ calculateRedAlertsByPlant(plant) }}</td>
                         <td>
-                            <button>Editar</button>
-                            <button>Eliminar</button>
+                            <button mat-icon-button [matMenuTriggerFor]="menu" class="action-button">
+                                <mat-icon>more_vert</mat-icon>
+                              </button>
+                            <mat-menu #menu="matMenu">
+                                <button mat-menu-item>
+                                  <mat-icon>delete</mat-icon>
+                                  <span>Eliminar planta</span>
+                                </button>
+                                <button mat-menu-item>
+                                  <mat-icon>edit</mat-icon>
+                                  <span>Editar planta</span>
+                                </button>
+                              </mat-menu>
                         </td>
                     </tr>
                     <tr *ngIf="plants.length === 0">
@@ -99,17 +110,17 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalTemperatureValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalTemperatureValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalTemperatureValues.redAlerts}}</p>
                             </div>
                         </div>
                     </div>
@@ -125,17 +136,17 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalPressureValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalPressureValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalPressureValues.redAlerts}}</p>
                              
                             </div>
                         </div>
@@ -152,17 +163,18 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalWindValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalWindValues.mediumAlerts}}
+                                </p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalWindValues.redAlerts}}</p>
                              
                             </div>
                         </div>
@@ -179,17 +191,17 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalLevelsValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalLevelsValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalLevelsValues.redAlerts}}</p>
                              
                             </div>
                         </div>
@@ -202,21 +214,21 @@
             <div class="alert-card">
                 <div class="info-type">
                     <div class="info-content">
-                        <p class="type">Niveles</p>
+                        <p class="type">Energia</p>
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalEnergyValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalEnergyValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalEnergyValues.redAlerts}}</p>
                              
                             </div>
                         </div>
@@ -233,17 +245,17 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalTensioneValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalTensioneValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalTensioneValues.redAlerts}}</p>
                              
                             </div>
                         </div>
@@ -260,17 +272,17 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalCarbonMonoxideValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalCarbonMonoxideValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalCarbonMonoxideValues.redAlerts}}</p>
                              
                             </div>
                         </div>
@@ -287,17 +299,17 @@
                         <div class="info-numbers">
                             <div class="number-icon">
                                 <i class="material-icons icon check">check</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalGasesValues.okReadings}}</p>
                        
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-medium">priority_high</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalGasesValues.mediumAlerts}}</p>
                               
                             </div>
                             <div class="number-icon">
                                 <i class="material-icons icon alert-red">warning_amber</i>
-                                <p class="number-type">234</p>
+                                <p class="number-type">{{totalGasesValues.redAlerts}}</p>
                              
                             </div>
                         </div>

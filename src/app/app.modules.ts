@@ -16,6 +16,7 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { UserDashboardComponent } from './model/user-dashboard/user-dashboard.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ReactiveFormsModule,
     HttpClientModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule
   ],
   exports: [ ],
   providers: [
