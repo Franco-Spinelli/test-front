@@ -13,14 +13,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-
+import { UserDashboardComponent } from './model/user-dashboard/user-dashboard.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidebarComponent,
-    NavbarComponent
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,9 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     MatIconModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDividerModule,
+    MatToolbarModule
   ],
   exports: [ ],
   providers: [

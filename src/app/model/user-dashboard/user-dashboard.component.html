@@ -1,0 +1,312 @@
+<div class="container">
+    <div class="top">
+        <mat-toolbar style=" background-color: rgba(233, 241, 244, 1);">
+            <h1 class="top-title">Monitoreo global</h1>
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="top-button button-language">
+                <i class="material-icons top-icon">language</i>
+            </button>
+            <button mat-icon-button class="top-button button-settings">
+                <i class="material-icons top-icon">settings</i>
+            </button>
+            <button mat-icon-button class="top-button">
+                <i class="material-icons top-icon">notifications_none</i>
+            </button>
+            <p class="top-text">Juan rojas</p>
+          </mat-toolbar>
+    </div>
+    <div class="alerts">
+        <div class="card">
+            <div class="info">
+                <p class="type">Lecturas Ok</p>
+                <p class="number">{{totalOkReadings}}</p>
+            </div>
+            <div class="circle circle-check">
+                <i class="material-icons icon check">check</i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="info">
+                <p class="type">Alertas Medias</p>
+                <p class="number">{{totalMediumAlerts}}</p>
+            </div>
+            <div class="circle circle-medium">
+                <i class="material-icons icon alert-medium">priority_high</i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="info">
+                <p class="type">Alertas Rojas</p>
+                <p class="number">{{totalRedAlerts}}</p>
+            </div>
+            <div class="circle circle-red">
+                <i class="material-icons icon alert-red">warning_amber</i>
+            </div>
+        </div>
+        <div class="card">
+            <div class="info">
+                <p class="type"> Sensores deshabilitados</p>
+                <p class="number">{{totalDisabled}}</p>
+            </div>
+            <div class="circle circle-disabled">
+                <i class="material-icons icon disabled">close</i>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="list">
+            <div class="list-header">
+                <h3 class="text-table">Plantas</h3>
+                <button class="btn"> + Crear nueva planta</button>
+            </div>
+            <mat-divider></mat-divider>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="th">País</th>
+                        <th class="th">Nombre</th>
+                        <th class="th">Lecturas OK</th>
+                        <th class="th">Alertas Medias</th>
+                        <th class="th">Alertas Rojas</th>
+                        <th class="th">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="list-body">
+                    <tr *ngFor="let plant of plants">
+                        <td>{{ plant.country }}</td>
+                        <td>{{ plant.name }}</td>
+                        <td>{{ calculateOkReadingsByPlant(plant) }}</td>
+                        <td>{{ calculateMediumAlertsByPlant(plant) }}</td>
+                        <td>{{ calculateRedAlertsByPlant(plant) }}</td>
+                        <td>
+                            <button>Editar</button>
+                            <button>Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="plants.length === 0">
+                        <td colspan="6">No hay plantas en la lista.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="type-alert">
+        <div class="alert-grid">
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Temperatura</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">thermostat</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Presion</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">speed</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Viento</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">air</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Niveles</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">waves</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Niveles</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">analytics</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Tension</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">bolt</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Monoxido de carbono</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">co2</i>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="info-type">
+                    <div class="info-content">
+                        <p class="type">Otros gases</p>
+                        <div class="info-numbers">
+                            <div class="number-icon">
+                                <i class="material-icons icon check">check</i>
+                                <p class="number-type">234</p>
+                       
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-medium">priority_high</i>
+                                <p class="number-type">234</p>
+                              
+                            </div>
+                            <div class="number-icon">
+                                <i class="material-icons icon alert-red">warning_amber</i>
+                                <p class="number-type">234</p>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="circle-type">
+                        <i class="material-icons icon icon-type">cloud</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

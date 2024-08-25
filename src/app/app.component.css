@@ -1,2 +1,17 @@
 
-  
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px; 
+    height: 100vh; 
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1000; 
+    box-shadow: 1px solid rgba(0, 0, 0, 0.1);
+    
+  }
+
+
+  .contenido.logged {
+    margin-left: 50px; 
+  }

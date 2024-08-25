@@ -1,2 +1,7 @@
 
-    <router-outlet></router-outlet>
+<div class="sidebar" *ngIf="isLogin()">
+  <app-sidebar></app-sidebar>
+</div>
+<div class="contenido" [ngClass]="{'logged': isLogged}">
+  <router-outlet></router-outlet> 
+</div>

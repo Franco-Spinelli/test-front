@@ -1,0 +1,31 @@
+.container{
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.list{
+    list-style-type: none; 
+    padding: 0;
+    margin-top: 0; 
+}
+.icons{
+   margin-top: 20px;
+}
+.logo{
+    margin-bottom: 50px;
+}
+.link{
+    color: rgb(184, 184, 184);
+}
+.button{
+    color: rgb(184, 184, 184);
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+.link:hover{
+    color: black;
+}
+.button:hover{
+    color: black;
+}
