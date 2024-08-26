@@ -20,6 +20,7 @@ export class AuthService {
     this.loggedIn.next(this.currentLoginOn.value);
   }
 
+//al principio del proyecto se implemento NgxCookies pero fue borrado por conflictos de dependencias con angular material  
   userInformation(): Observable<any> {
     return this.http.get<any>(environment.urlApi + '/user/get-user');
   }
