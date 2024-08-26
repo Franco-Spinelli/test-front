@@ -115,7 +115,7 @@
     
   }
   @media (max-width: 658px) {
-    .image-section, .p-information, .a-information, .text-email{
+    .image-section{
       display: none;
     }
     .button-information {
