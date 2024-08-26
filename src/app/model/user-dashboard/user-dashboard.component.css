@@ -8,8 +8,11 @@
     border: none;
     color: rgba(142, 142, 161, 1);
     background-color: rgba(233, 241, 244, 1);
+    cursor: pointer;
 }
-
+.top-button:hover {
+    color: rgb(0, 0, 0);
+}
 .top-title {
     font-size: 24px;
     font-weight: 600;
@@ -67,8 +70,13 @@
     font-family: 'Poppins', sans-serif;
     border-radius: 6px;
     padding: 5px;
+    cursor: pointer;
+    transition: 0.4s;
 }
-
+.btn:hover{
+    background-color: rgba(51, 163, 170, 1);
+    color: white;
+}
 .text-table {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;

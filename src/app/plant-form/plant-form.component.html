@@ -1,0 +1,33 @@
+<div class="modal-container" [class.active]="isOpen">
+    <div class="modal-content">
+      <button class="close-modal" (click)="closeModal()">
+        <mat-icon class="mat-icon-button">close</mat-icon>
+      </button>
+      <div class="container">
+              <form [formGroup]="plantForm">
+                <div>
+                <label for="country">Pais</label>
+                <mat-form-field class="select">                 
+                  <mat-select  formControlName="country" [ngClass]="{'is-invalid': plantForm.get('country')?.touched && plantForm.get('country')?.invalid}" required>
+                      <mat-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+                <div>
+              </div>
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid': plantForm.get('name')?.touched && plantForm.get('name')?.invalid}" required />
+                </div>
+                <div class="type-list">
+                  <span *ngFor="let sensor of sensorList">
+                    <h2>Sensores de {{sensor.type}} <button (click)="openSensorEditModal(plant, sensor)" class="btn"> <mat-icon>edit</mat-icon> Editar</button></h2>
+                  </span>
+                  <app-sensor-form #sensorModal></app-sensor-form>
+                </div>
+                <span *ngIf="!isUpdate"> <button type="submit" class="btn btn-primary"  (click)="onSubmit()">Crear</button></span>
+                <span *ngIf="isUpdate"> <button type="submit" class="btn btn-primary"  (click)="update()">Editar</button></span>
+              </form>
+      </div>
+     </div>
+  </div>

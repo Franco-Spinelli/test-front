@@ -11,6 +11,6 @@ export class SidebarComponent {
   constructor(private authService: AuthService,private router: Router){}
   logOut(){
     this.authService.logOut();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/');
   }
 }

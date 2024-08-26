@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlantDTO, SensorType } from '../../models';
 import { PlantService } from '../../services/plant.service';
 import { SensorService } from '../../services/sensor.service';
+import { PlantFormComponent } from '../../plant-form/plant-form.component';
+import { SensorFormComponent } from '../../sensor-form/sensor-form.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -23,12 +25,15 @@ export class UserDashboardComponent implements OnInit{
   totalTensioneValues: any;
   totalCarbonMonoxideValues: any;
   totalGasesValues: any;
+
+  @ViewChild('plantModal') plantModal: PlantFormComponent;
+  @ViewChild('sensorModal') sensorModal: SensorFormComponent;
+
   constructor(private plantService:PlantService, private sensorService:SensorService){
     this.plants = []
   }
   ngOnInit(): void {
    this.loadPlants();
-   this.loadNumbers();
   }
   loadNumbers(){
     this.sensorService.getDisabledSensors().subscribe((data)=>{
@@ -48,7 +53,15 @@ export class UserDashboardComponent implements OnInit{
     this.plantService.getPlants().subscribe((data)=>{
       this.plants = data;
       this.loadNumbersBytype();
+      this.loadNumbers();
     })
+    this.plantService.getPlantUpdated().subscribe(() => {
+      this.plantService.getPlants().subscribe((plants) => {
+        this.plants = plants;
+        this.loadNumbersBytype();
+        this.loadNumbers();
+      });
+    });
   }
   loadNumbersBytype(){
     this.totalTemperatureValues = this.calculateTotalByType(SensorType.TEMPERATURE);
@@ -96,7 +109,20 @@ export class UserDashboardComponent implements OnInit{
         }
       });
     });
-
     return totalAlerts;
+  }
+  deletePlant(id:number){
+    this.plantService.deletePlant(id).subscribe(()=>{
+      
+    })
+  }
+  openPlantModal() {
+    this.plantModal.openCreate();
+  }
+  openEditPlantModal(plant: PlantDTO) {
+    this.plantModal.openEdit(plant);
+  }
+  openSensorModal(plant:PlantDTO){
+    this.sensorModal.openCreate(plant);
   }
 }

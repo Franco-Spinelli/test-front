@@ -17,12 +17,17 @@ import { UserDashboardComponent } from './model/user-dashboard/user-dashboard.co
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+import { PlantFormComponent } from './plant-form/plant-form.component';
+import { SensorFormComponent } from './sensor-form/sensor-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidebarComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+    PlantFormComponent,
+    SensorFormComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import {MatMenuModule} from '@angular/material/menu';
     HttpClientModule,
     MatDividerModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
   exports: [ ],
   providers: [

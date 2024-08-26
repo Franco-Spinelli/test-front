@@ -1,0 +1,54 @@
+<div class="modal-container" [class.active]="isOpen">
+  <div class="modal-content">
+    <button class="close-modal" (click)="closeModal()">
+      <mat-icon class="mat-icon-button">close</mat-icon>
+    </button>
+    <div class="container">
+      <form [formGroup]="sensorForm">
+        <div *ngIf="!isUpdate">
+          <label for="type">Tipo de sensor</label>
+          <mat-form-field class="select">
+            <mat-select formControlName="type"
+              [ngClass]="{'is-invalid': sensorForm.get('type')?.touched && sensorForm.get('type')?.invalid}" required>
+              <mat-option *ngFor="let type of sensorTypes" [value]="type">{{type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label for="totalSensors">Total de sensores</label>
+          <input type="number" class="form-control" formControlName="totalSensors" required />
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="okReadings">Lecturas correctas <i class="material-icons icon check">check</i> </label>
+
+          <input type="number" class="form-control" formControlName="okReadings" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mediumAlerts">Alertas medias <i class="material-icons icon alert-medium">priority_high</i>
+          </label>
+          <input type="number" class="form-control" formControlName="mediumAlerts" required />
+        </div>
+
+        <div class="form-group">
+          <label for="redAlerts">Alertas rojas <i class="material-icons icon alert-red">warning_amber</i> </label>
+          <input type="number" class="form-control" formControlName="redAlerts" required />
+        </div>
+
+        <div class="form-group">
+          <label for="disabledSensors">Sensores deshabilitados <i class="material-icons icon disabled">close</i>
+          </label>
+          <input type="number" class="form-control" formControlName="disabledSensors" required />
+        </div>
+        <div *ngIf="sensorForm.hasError('exceedTotal')" class="error">
+          La suma de sensores en diferentes estados tiene que ser igual al total de sensores.
+        </div>
+        <span *ngIf="!isUpdate"> <button type="submit" class="btn btn-primary"(click)="onSubmit()">Crear</button></span>
+        <span *ngIf="isUpdate"> <button type="submit" class="btn btn-primary" (click)="update()">Editar</button></span>
+      </form>
+    </div>
+  </div>
+</div>
