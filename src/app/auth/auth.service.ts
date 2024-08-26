@@ -20,6 +20,10 @@ export class AuthService {
     this.loggedIn.next(this.currentLoginOn.value);
   }
 
+  userInformation(): Observable<any> {
+    return this.http.get<any>(environment.urlApi + '/user/get-user');
+  }
+
   login(credentials: LoginRequest): Observable<any> {
     return this.http.post<any>(environment.urlHost + 'auth/login', credentials).pipe(
       tap((userData) => {

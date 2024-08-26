@@ -4,6 +4,7 @@ import { PlantService } from '../../services/plant.service';
 import { SensorService } from '../../services/sensor.service';
 import { PlantFormComponent } from '../../plant-form/plant-form.component';
 import { SensorFormComponent } from '../../sensor-form/sensor-form.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -11,6 +12,8 @@ import { SensorFormComponent } from '../../sensor-form/sensor-form.component';
   styleUrl: './user-dashboard.component.css'
 })
 export class UserDashboardComponent implements OnInit{
+  userName:string;
+
   plants:PlantDTO[];
   totalOkReadings: number = 0;
   totalMediumAlerts: number = 0;
@@ -29,11 +32,12 @@ export class UserDashboardComponent implements OnInit{
   @ViewChild('plantModal') plantModal: PlantFormComponent;
   @ViewChild('sensorModal') sensorModal: SensorFormComponent;
 
-  constructor(private plantService:PlantService, private sensorService:SensorService){
+  constructor(private plantService:PlantService, private sensorService:SensorService, private authService: AuthService){
     this.plants = []
   }
   ngOnInit(): void {
    this.loadPlants();
+   this.loadUserData();
   }
   loadNumbers(){
     this.sensorService.getDisabledSensors().subscribe((data)=>{
@@ -124,5 +128,11 @@ export class UserDashboardComponent implements OnInit{
   }
   openSensorModal(plant:PlantDTO){
     this.sensorModal.openCreate(plant);
+  }
+  loadUserData(){
+    this.authService.userInformation().subscribe((data)=>{
+      console.log(data);
+      this.userName = data.name;
+    })
   }
 }

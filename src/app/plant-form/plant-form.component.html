@@ -19,7 +19,7 @@
                   <label for="name">Nombre</label>
                   <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid': plantForm.get('name')?.touched && plantForm.get('name')?.invalid}" required />
                 </div>
-                <div class="type-list">
+                <div  *ngIf="isUpdate" class="type-list">
                   <span *ngFor="let sensor of sensorList">
                     <h2>Sensores de {{sensor.type}} <button (click)="openSensorEditModal(plant, sensor)" class="btn"> <mat-icon>edit</mat-icon> Editar</button></h2>
                   </span>
