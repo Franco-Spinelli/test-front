@@ -166,7 +166,7 @@ button {
   font-size: 17px;
 }
 @media (max-width: 658px) {
-  .image-section, .p-information, .a-information, .text-email{
+  .image-section, .captcha-information, .a-information, .text-email{
     display: none;
   }
   .button-information {
