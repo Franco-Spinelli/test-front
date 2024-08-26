@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   register(credentials: RegisterRequest): Observable<any> {
-    return this.http.post<any>(environment.urlHost + 'auth/signup', credentials).pipe(
+    return this.http.post<any>(environment.urlHost + 'auth/register', credentials).pipe(
       tap((userData) => {
         sessionStorage.setItem('token', userData.token);
         this.currentUserData.next(userData.token);

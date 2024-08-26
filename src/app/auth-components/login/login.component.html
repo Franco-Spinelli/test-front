@@ -23,7 +23,7 @@
             <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
                 <div class="email-section">
                     <p class="text-email">Email</p>
-                    <input class="input-information" formControlName="username" name="username" required placeholder="Usuario">
+                    <input class="input-information" formControlName="username" name="username" required placeholder="Email">
                 </div>
                 <input class="input-information" formControlName="password" name="password" type="password" required placeholder="Contraseña">
                 <div class="form-actions">
@@ -31,6 +31,7 @@
                     <button class="button-information" type="submit">Iniciar Sesión</button>
                 </div>
             </form>
+            <p class="p-information">No tienes cuenta? <a href="register" style="text-decoration: none; color: rgba(51, 163, 170, 1);"> Registrate</a></p>
             <p class="p-information">Protegido por reCAPTCHA y sujeto a la <a href=""
                     style="text-decoration: none; color: rgba(51, 163, 170, 1);">Política de Privacidad</a> y <a href=""
                     style="text-decoration: none; color: rgba(51, 163, 170, 1);">Condiciones</a></p>

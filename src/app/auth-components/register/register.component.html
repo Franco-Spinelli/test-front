@@ -1,0 +1,24 @@
+<div class="login-container">
+    <div class="image-section">
+        <img src="/assets/img/fondo.png" alt="Imagen de fondo">
+    </div>
+    <div class="form-section">
+        <div class="information">
+            <h3 class="h3-information">Crear cuenta</h3>
+            <form class="login-form" [formGroup]="registerForm">
+                <input class="input-information" formControlName="firstname" name="firstname" type="text" required placeholder="Nombre">
+                <input class="input-information" formControlName="lastname" name="lastname" type="text" required placeholder="Apellido">
+                <input class="input-information" formControlName="username" name="username" required placeholder="Email">
+                <input class="input-information" formControlName="password" name="password" type="password" required placeholder="Contraseña">
+                <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                    <span class="error"><p>La contraseña debe tener mas de 8 caracteres</p></span>
+                </div>
+                <div class="form-actions">
+                    <button class="button-information" type="submit" (click)="register()">Crear cuenta</button>
+                </div>
+            </form>
+            <p class="p-information">¿Ya tienes cuenta?<a href="" style="text-decoration: none; color: rgba(51, 163, 170, 1);"> Iniciar sesion</a></p>
+        </div>
+    </div>
+
+</div>

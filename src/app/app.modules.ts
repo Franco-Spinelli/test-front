@@ -20,6 +20,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import { PlantFormComponent } from './plant-form/plant-form.component';
 import { SensorFormComponent } from './sensor-form/sensor-form.component';
+import { RegisterComponent } from './auth-components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { SensorFormComponent } from './sensor-form/sensor-form.component';
     SidebarComponent,
     UserDashboardComponent,
     PlantFormComponent,
-    SensorFormComponent
+    SensorFormComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

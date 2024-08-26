@@ -131,7 +131,6 @@ export class UserDashboardComponent implements OnInit{
   }
   loadUserData(){
     this.authService.userInformation().subscribe((data)=>{
-      console.log(data);
       this.userName = data.name;
     })
   }

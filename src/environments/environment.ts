@@ -1,4 +1,4 @@
 export const environment = {
-    urlHost: "http://localhost:8080/",
-    urlApi: "http://localhost:8080/api",
+    urlHost: "https://challenge-latest-w7i8.onrender.com/",
+    urlApi: "https://challenge-latest-w7i8.onrender.com/api",
 }
